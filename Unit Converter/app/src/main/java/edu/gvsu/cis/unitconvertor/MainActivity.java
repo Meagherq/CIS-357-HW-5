@@ -1,17 +1,25 @@
 package edu.gvsu.cis.unitconvertor;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.os.Build;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity implements View.OnFocusChangeListener {
+
+    LinearLayout mainLayout;
 
     EditText calcFromField;
     EditText calcToField;
@@ -37,10 +45,21 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
     public void onFocusChange(View v, boolean hasFocus) {
         switch(v.getId()){
             case R.id.calcFromField:
-                calcToField.setText("");
+                if(!hasFocus) {
+                    hideKeyboard(v);
+
+                }
+                else {
+                    calcToField.setText("");
+                }
                 break;
             case R.id.calcToField:
-                calcFromField.setText("");
+                if(hasFocus) {
+                    calcFromField.setText("");
+                }
+                else{
+                    hideKeyboard(v);
+                }
                 break;
         }
     }
@@ -58,6 +77,8 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
         } catch (Exception e){
             System.out.println("Error " + e.getMessage());
         }
+
+        mainLayout = findViewById(R.id.calcMainLayout);
 
         calcFromField = findViewById(R.id.calcFromField);
         calcToField = findViewById(R.id.calcToField);
@@ -125,9 +146,8 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
                     calcToText.setText("Meters");
             }
         });
-
-
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -157,5 +177,10 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
             calcToText.setText(data.getStringExtra("toUnitText"));
         }
 
+    }
+
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }
