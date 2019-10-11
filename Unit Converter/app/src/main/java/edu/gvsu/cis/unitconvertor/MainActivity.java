@@ -19,8 +19,6 @@ import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity implements View.OnFocusChangeListener {
 
-    LinearLayout mainLayout;
-
     EditText calcFromField;
     EditText calcToField;
     TextView calcFromText;
@@ -78,8 +76,6 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
             System.out.println("Error " + e.getMessage());
         }
 
-        mainLayout = findViewById(R.id.calcMainLayout);
-
         calcFromField = findViewById(R.id.calcFromField);
         calcToField = findViewById(R.id.calcToField);
         calcFromText = findViewById(R.id.calcFromText);
@@ -91,6 +87,8 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
 
         calcFromField.setOnFocusChangeListener(this);
         calcToField.setOnFocusChangeListener(this);
+
+        updateFieldHints();
 
         calc.setOnClickListener(v -> {
             if(current.equals("Length")) {
@@ -147,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
                     calcToText.setText("Meters");
             }
             hideKeyboard(e);
+            updateFieldHints();
         });
     }
 
@@ -177,8 +176,15 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
 
             calcFromText.setText(data.getStringExtra("fromUnitText"));
             calcToText.setText(data.getStringExtra("toUnitText"));
+
+            updateFieldHints();
         }
 
+    }
+
+    public void updateFieldHints(){
+        calcFromField.setHint("Enter "+current+" in "+calcFromText.getText().toString());
+        calcToField.setHint("Enter "+current+" in "+calcToText.getText().toString());
     }
 
     public void hideKeyboard(View view) {
