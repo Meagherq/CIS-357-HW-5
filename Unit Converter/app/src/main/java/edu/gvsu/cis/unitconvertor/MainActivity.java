@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
 
     EditText calcFromField;
     EditText calcToField;
+    TextView calcTopLabel;
     TextView calcFromText;
     TextView calcToText;
 
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
         calcToField = findViewById(R.id.calcToField);
         calcFromText = findViewById(R.id.calcFromText);
         calcToText = findViewById(R.id.calcToText);
+        calcTopLabel = findViewById(R.id.calcTopLabel);
 
         calc = findViewById(R.id.Calculate);
         clear = findViewById(R.id.Clear);
@@ -183,6 +185,7 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
     }
 
     public void updateFieldHints(){
+        calcTopLabel.setText(current+" Converter");
         calcFromField.setHint("Enter "+current+" in "+calcFromText.getText().toString());
         calcToField.setHint("Enter "+current+" in "+calcToText.getText().toString());
     }
