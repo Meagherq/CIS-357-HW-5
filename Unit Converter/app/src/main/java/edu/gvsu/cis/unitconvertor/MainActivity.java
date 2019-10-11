@@ -125,12 +125,13 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
                     }
                 }
             }
-
+            hideKeyboard(v);
         });
 
         clear.setOnClickListener(v -> {
             calcFromField.setText(null);
             calcToField.setText(null);
+            hideKeyboard(v);
         });
 
         mode.setOnClickListener(e -> {
@@ -145,6 +146,7 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
                     calcFromText.setText("Yards");
                     calcToText.setText("Meters");
             }
+            hideKeyboard(e);
         });
     }
 
