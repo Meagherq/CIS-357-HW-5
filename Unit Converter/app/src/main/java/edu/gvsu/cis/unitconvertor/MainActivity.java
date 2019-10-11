@@ -76,15 +76,15 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
                 if(!calcFromField.getText().toString().equals("") ^ !calcToField.getText().toString().equals("")) {
                     if (!calcFromField.getText().toString().equals("") && calcToField.getText().toString().equals("")){
                         Double resFrom = Double.parseDouble(calcFromField.getText().toString());
-                        toLen = UnitsConverter.LengthUnits.valueOf(calcFromText.getText().toString());
-                        fromLen = UnitsConverter.LengthUnits.valueOf(calcToText.getText().toString());
+                        toLen = UnitsConverter.LengthUnits.valueOf(calcToText.getText().toString());
+                        fromLen = UnitsConverter.LengthUnits.valueOf(calcFromText.getText().toString());
                         calcToField.setText(Double.toString(UnitsConverter.convert(resFrom, fromLen, toLen)));
                     }
                     if(!calcToField.getText().toString().equals("") && calcFromField.getText().toString().equals("")){
                         Double resTo = Double.parseDouble(calcToField.getText().toString());
-                        toLen = UnitsConverter.LengthUnits.valueOf(calcFromText.getText().toString());
-                        fromLen = UnitsConverter.LengthUnits.valueOf(calcToText.getText().toString());
-                        calcFromField.setText(Double.toString(UnitsConverter.convert(resTo, fromLen, toLen)));
+                        toLen = UnitsConverter.LengthUnits.valueOf(calcToText.getText().toString());
+                        fromLen = UnitsConverter.LengthUnits.valueOf(calcFromText.getText().toString());
+                        calcFromField.setText(Double.toString(UnitsConverter.convert(resTo, toLen, fromLen)));
                     }
                 }
             }
@@ -92,15 +92,15 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
                 if(!calcFromField.getText().toString().equals("") ^ !calcToField.getText().toString().equals("")) {
                     if (!calcFromField.getText().toString().equals("") && calcToField.getText().toString().equals("")){
                         Double resFrom = Double.parseDouble(calcFromField.getText().toString());
-                        toVol = UnitsConverter.VolumeUnits.valueOf(calcFromText.getText().toString());
-                        fromVol = UnitsConverter.VolumeUnits.valueOf(calcToText.getText().toString());
+                        toVol = UnitsConverter.VolumeUnits.valueOf(calcToText.getText().toString());
+                        fromVol = UnitsConverter.VolumeUnits.valueOf(calcFromText.getText().toString());
                         calcToField.setText(Double.toString(UnitsConverter.convert(resFrom, fromVol, toVol)));
                     }
                     if(!calcToField.getText().toString().equals("") && calcFromField.getText().toString().equals("")){
                         Double resTo = Double.parseDouble(calcToField.getText().toString());
-                        toVol = UnitsConverter.VolumeUnits.valueOf(calcFromText.getText().toString());
-                        fromVol = UnitsConverter.VolumeUnits.valueOf(calcToText.getText().toString());
-                        calcFromField.setText(Double.toString(UnitsConverter.convert(resTo, fromVol, toVol)));
+                        toVol = UnitsConverter.VolumeUnits.valueOf(calcToText.getText().toString());
+                        fromVol = UnitsConverter.VolumeUnits.valueOf(calcFromText.getText().toString());
+                        calcFromField.setText(Double.toString(UnitsConverter.convert(resTo, toVol, fromVol)));
                     }
                 }
             }
