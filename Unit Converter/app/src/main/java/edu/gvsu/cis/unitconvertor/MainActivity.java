@@ -2,9 +2,7 @@ package edu.gvsu.cis.unitconvertor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.os.Build;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,7 +11,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.content.Intent;
 
@@ -37,8 +34,6 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
     public UnitsConverter.VolumeUnits fromVol = UnitsConverter.VolumeUnits.Liters;
     public UnitsConverter.VolumeUnits toVol = UnitsConverter.VolumeUnits.Gallons;
     public String current = "Length";
-
-
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
@@ -175,7 +170,6 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == UNITS_SECTION) {
-
             calcFromText.setText(data.getStringExtra("fromUnitText"));
             calcToText.setText(data.getStringExtra("toUnitText"));
 
